@@ -1,0 +1,28 @@
+<form class="card" [formGroup]="form" (ngSubmit)="submit()">
+  <h2>{{ selectedCustomer ? 'Update customer' : 'Create customer' }}</h2>
+
+  <label>
+    Name
+    <input type="text" formControlName="name" placeholder="Customer name" />
+  </label>
+
+  <label>
+    Email
+    <input type="email" formControlName="email" placeholder="email@company.com" />
+  </label>
+
+  <label>
+    Phone
+    <input type="text" formControlName="phone" placeholder="+1 555 555 5555" />
+  </label>
+
+  <label>
+    Company
+    <input type="text" formControlName="company" placeholder="Company" />
+  </label>
+
+  <div class="actions">
+    <button type="submit" [disabled]="submitting">{{ selectedCustomer ? 'Save changes' : 'Create' }}</button>
+    <button type="button" class="ghost" (click)="reset()">Clear</button>
+  </div>
+</form>

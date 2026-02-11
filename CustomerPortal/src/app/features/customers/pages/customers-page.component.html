@@ -1,0 +1,24 @@
+<main class="page">
+  <section class="hero">
+    <h1>Customer Portal</h1>
+    <p>Production-ready CRUD page with clean architecture, use-cases, repository abstraction, and reactive UI state.</p>
+  </section>
+
+  <p *ngIf="facade.error()" class="error">{{ facade.error() }}</p>
+
+  <div class="layout">
+    <cp-customer-form
+      [selectedCustomer]="selectedCustomer()"
+      [submitting]="facade.loading()"
+      (createCustomer)="facade.create($event)"
+      (updateCustomer)="facade.update($event.id, $event.draft); stopEdit()"
+      (cancelEdit)="stopEdit()"
+    />
+
+    <cp-customer-list
+      [customers]="facade.customers()"
+      (edit)="startEdit($event)"
+      (remove)="removeCustomer($event)"
+    />
+  </div>
+</main>

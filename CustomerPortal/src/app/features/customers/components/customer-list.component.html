@@ -1,0 +1,34 @@
+<section class="card">
+  <header>
+    <h2>Customers</h2>
+    <span>{{ customers.length }} total</span>
+  </header>
+
+  <p *ngIf="!customers.length" class="empty">No customers yet. Add your first customer.</p>
+
+  <table *ngIf="customers.length">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Company</th>
+        <th>Updated</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customers; trackBy: trackById">
+        <td>{{ customer.name }}</td>
+        <td>{{ customer.email }}</td>
+        <td>{{ customer.phone }}</td>
+        <td>{{ customer.company }}</td>
+        <td>{{ customer.updatedAt | date: 'medium' }}</td>
+        <td class="actions">
+          <button type="button" class="ghost" (click)="edit.emit(customer)">Edit</button>
+          <button type="button" class="danger" (click)="remove.emit(customer.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
